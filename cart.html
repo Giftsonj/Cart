@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <!-- <div>
+        <button onClick="appendChild(e)" value="1">Click here</button>
+    </div>
+
+    <div>
+        <button onClick="doSave(e)">Save</button>
+    </div>
+    <div>
+        <ul id="myList">
+
+        </ul>
+    </div> -->
+
+    <html>
+
+    <head>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script>
+            function doClick() {
+                var total_text = document.getElementsByTagName("p");
+                // var varLength = 1;
+                var varLength = total_text.length;
+                varLength = varLength + 1;
+                document.getElementById("txtDiv").innerHTML = document.getElementById("txtDiv").innerHTML +
+                    "<p> <input type='checkbox' id='" + varLength + "'>Product " + varLength + "<button type = 'button' id='" + varLength + "' onclick=addCart(event);>Add</button></p>"
+                // "<p><input type='button' id='" + varLength + "' onkeyup='doChange(event)'>PRODUCT " + varLength + "</input>&nbsp;&nbsp;&nbsp;<i id='" + varLength + "' class='fa fa-minus' onclick=remove_field(event);></i></p>";
+            }
+            function remove_field(evt) {
+                // var targetValue = evt.target.id;
+                // targetValue = targetValue + 1;
+                // document.getElementsByTagName("p")[targetValue].remove();
+            }
+            function doChange(evt) {
+                // var varTxtVal = evt.target.value;
+                // document.getElementById("txtPrimary").value = varTxtVal;
+            }
+            function addCart(evt) {
+                var targetValue = evt.target.outerHTML;
+                // targetValue = targetValue - 1;
+                document.getElementById("idAddCart").innerHTML = document.getElementById("idAddCart").innerHTML +
+
+                    console.log(evt)
+                document.getElementsByTagName("p")[targetValue].remove();
+                // document.getElementById(targetValue).remove();
+                // var varTxtVal = evt.target.id;
+                // console.log(varTxtVal)
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="txtDiv">
+            <input type="text" value="" readOnly id="txtPrimary">
+            <button id="btnPlus" onclick="doClick()">Plus</button>
+        </div>
+        <div id="idAddCart">
+
+        </div>
+    </body>
+
+    </html>
+</body>
+
+</html>
