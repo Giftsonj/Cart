@@ -2,69 +2,82 @@
 <html>
 
 <head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
 
+        .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- <div>
-        <button onClick="appendChild(e)" value="1">Click here</button>
-    </div>
-
-    <div>
-        <button onClick="doSave(e)">Save</button>
-    </div>
-    <div>
-        <ul id="myList">
-
-        </ul>
-    </div> -->
-
     <html>
 
     <head>
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
         <script>
-            function doClick() {
+            var temp = true;
+            function doClick(evt) {
                 var total_text = document.getElementsByTagName("p");
-                // var varLength = 1;
-                var varLength = total_text.length;
-                varLength = varLength + 1;
+                let varLength = total_text.length;
+                // debugger;
+                if (temp == false) {
+                    var targetValue = evt.target.id;
+                    var element = document.getElementById(targetValue);
+                    element.parentNode.removeChild(element);
+                    // document.getElementsByTagName("h4")[targetValue].remove();
+                    varLength = targetValue;
+                    // console.log(varLength)
+                }
                 document.getElementById("txtDiv").innerHTML = document.getElementById("txtDiv").innerHTML +
-                    "<p> <input type='checkbox' id='" + varLength + "'>Product " + varLength + "<button type = 'button' id='" + varLength + "' onclick=addCart(event);>Add</button></p>"
-                // "<p><input type='button' id='" + varLength + "' onkeyup='doChange(event)'>PRODUCT " + varLength + "</input>&nbsp;&nbsp;&nbsp;<i id='" + varLength + "' class='fa fa-minus' onclick=remove_field(event);></i></p>";
+                    "<table border='1px' id='" + varLength + "'><tr><td><p id='" + varLength + "'> Product " + varLength + "<button type = 'button' id='" + varLength + "' onclick=addCart(event);>Add to cart</button></p></td></tr></table>"
             }
-            function remove_field(evt) {
-                // var targetValue = evt.target.id;
-                // targetValue = targetValue + 1;
-                // document.getElementsByTagName("p")[targetValue].remove();
-            }
-            function doChange(evt) {
-                // var varTxtVal = evt.target.value;
-                // document.getElementById("txtPrimary").value = varTxtVal;
-            }
+            // <input type='checkbox' id='" + varLength + "'>
             function addCart(evt) {
-                var targetValue = evt.target.outerHTML;
-                // targetValue = targetValue - 1;
+                // if (temp == true) {
+                var targetValue = evt.target.id;
+                // let letChecked = document.getElementById(targetValue).checked;
+                // console.log(letChecked)
+                // if (letChecked) {
+                //     alert()
+                // }
+                // console.log(evt)
+                // debugger;
+                // let total_text = document.getElementsByTagName("h4");
                 document.getElementById("idAddCart").innerHTML = document.getElementById("idAddCart").innerHTML +
+                    "<h4 id='" + targetValue + "'> Product " + targetValue + "<button type = 'button' id='" + targetValue + "' onclick=doClick(event);>Delete Cart</button></h4>"
+                    ;
+                // <input type='checkbox' id='" + targetValue + "'>
+                temp = false;
+                // document.getElementsByTagName("p")[targetValue].remove();
+                // targetValue.parentNode.removeChild(targetValue)
+                // console.log(removeP)
+                // }
+                var element = document.getElementById(targetValue);
+                element.parentNode.removeChild(element);
+            }
+            function deleteCart(evt) {
 
-                    console.log(evt)
-                document.getElementsByTagName("p")[targetValue].remove();
-                // document.getElementById(targetValue).remove();
-                // var varTxtVal = evt.target.id;
-                // console.log(varTxtVal)
             }
         </script>
     </head>
 
     <body>
-        <div id="txtDiv">
-            <input type="text" value="" readOnly id="txtPrimary">
-            <button id="btnPlus" onclick="doClick()">Plus</button>
-        </div>
-        <div id="idAddCart">
+        <div class="flex-container">
+            <div id="txtDiv">
+                <!-- <input type="text" value="" readOnly id="txtPrimary"> -->
+                <button id="btnPlus" onclick="doClick()">Plus</button>
+            </div>
+            <div id="idAddCart">
 
+            </div>
         </div>
+
     </body>
 
     </html>
