@@ -1,0 +1,57 @@
+.header {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+  }
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 15px;
+  }
+  
+#accordian section p{
+    display: none;
+    text-align: center;
+}
+#accordian section a{
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
+#accordian section a:hover{
+    text-decoration: underline;
+}
+#accordian section:target p{
+    display: block;
+}
+.footer {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+    margin-top: 17%;
+  }
