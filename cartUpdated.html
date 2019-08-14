@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            border: 1px solid;
+            padding: 5%;
+        }
+
+        /* .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+        } */
+        div>div {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .txtDiv {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+
+        .idAddCart {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+    </style>
+    <script>
+        var temp = true;
+        // let count = 0;
+        let letProdId = 0;
+        let letTable = document.createElement("table");
+
+        function doClick(evt) {
+            // var total_text = document.getElementsByTagName("p");
+            // var total_text = document.getElementById("txtDiv");
+            // console.log(evt)
+            // let varLength = total_text.length;
+            // if (temp == false) {
+            //     var targetValue = evt.target.id;
+            //     var element = document.getElementById(targetValue);
+            //     element.parentNode.removeChild(element);
+            //     varLength = targetValue;
+            //     document.getElementById('btnPlus').disabled = true;
+            // }
+            // document.getElementById("txtDiv").innerHTML = document.getElementById("txtDiv").innerHTML +
+            //     "<table border='1px' id='" + varLength + "'><tr><td><p id='" + varLength + "'> Product " + varLength + "&nbsp;&nbsp;&nbsp;&nbsp;<button type = 'button' id='" + varLength + "' onclick=addCart(event);>Add to cart</button></p></td></tr></table>"
+            letProdId = letProdId + 1;
+            let letTxtDiv = document.getElementById("txtDiv").innerHTML;
+            let letTr = document.createElement("tr");
+            let letTdId = document.createElement("td");
+            let letTdProd = document.createElement("td");
+            let letTdCart = document.createElement("td");
+
+            let ProdId = document.createTextNode(letProdId);
+
+            let letTextPara = document.createElement("p");
+            let ProductName = document.createTextNode("Product");
+            // ProductName + ProductName + letProdId;
+
+            let btnCreateElement = document.createElement("BUTTON");
+            let BtnTxtNode = document.createTextNode("Add to cart");
+            // let BtnTxtNode = document.createTextNode("Add to cart");
+
+            letTextPara.appendChild(ProductName);
+            btnCreateElement.appendChild(BtnTxtNode);
+
+            letTdId.appendChild(ProdId);
+            letTdProd.appendChild(letTextPara);
+            letTdCart.appendChild(btnCreateElement);
+
+            letTr.appendChild(letTdId);
+            letTr.appendChild(letTdProd);
+            letTr.appendChild(letTdCart);
+            letTr.setAttribute("id", letProdId);
+
+            letTable.appendChild(letTr);
+            letTable.setAttribute("border", "1");
+
+            // document.body.appendChild(btnCreateElement).addEventListener("click", hii);
+            document.body.appendChild(letTable).addEventListener("click", function () {
+                addCart(event)
+            }, false);
+
+            // letTxtDiv = letTxtDiv + btn;
+            // let productAppend = document.body.appendChild(btn);
+            // console.log()
+
+            // values send through event listner
+
+            // var someVar;
+            // someVar = some_other_function();
+            // alert(someVar);
+            // someObj.addEventListener("click", function () {
+            //     some_function(someVar);
+            // }, false);
+        }
+        // <input type='checkbox' id='" + varLength + "'>
+        // function addCart(evt) {
+        //     var targetValue = evt.target.id;
+        //     document.getElementById("idAddCart").innerHTML = document.getElementById("idAddCart").innerHTML +
+        //         "<table border='1px' id='" + targetValue + "'><tr><td><h4 id='" + targetValue + "'> Product " + targetValue + "&nbsp;&nbsp;&nbsp;&nbsp;<button type = 'button' id='" + targetValue + "' onclick=doClick(event);>Delete Cart</button></h4></td></tr></table>"
+        //         ;
+        //     // <input type='checkbox' id='" + targetValue + "'>
+        //     temp = false;
+        //     var element = document.getElementById(targetValue);
+        //     element.parentNode.removeChild(element);
+        // }
+        function addCart(evt) {
+            let letId = evt.path[2].id;
+            // console.log(evt.path[2].id)
+            var removeProd = document.getElementById(letId);
+            // console.log(evt)
+            // console.log(letId)
+            // console.log(removeProd);
+
+            removeProd.parentNode.removeChild(removeProd);
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div>
+            <button id="btnPlus" onclick="doClick()">Add Products</button>
+            <p id="txtDiv"></p>
+        </div>
+        <div id="idAddCart">
+            Products added to Cart
+        </div>
+    </div>
+
+</body>
+
+</html>
