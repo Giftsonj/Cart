@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            border: 1px solid;
+            padding: 5%;
+        }
+
+        /* .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+        } */
+        div>div {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .txtDiv {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+
+        .idAddCart {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+    </style>
+    <script>
+        var temp = true;
+        let letProdId = 0;
+        var temp = true;
+        let letTable = document.createElement("table");
+
+        function doClick(evt) {
+            letProdId = letProdId + 1;
+            let letTr = document.createElement("tr");
+            let letTdId = document.createElement("td");
+            let letTdProd = document.createElement("td");
+            let letTdCart = document.createElement("td");
+
+
+            if (temp == false) {
+                let letId = evt.path[2].id;
+                console.log(letId)
+
+                var removeProd = document.getElementById(letId);
+                removeProd.parentNode.removeChild(removeProd);
+                temp = true;
+                console.log("Hii")
+
+                return false;
+            }
+            let ProdId = document.createTextNode(letProdId);
+
+            let letTextPara = document.createElement("p");
+            let ProductName = document.createTextNode("Product");
+
+            let btnCreateElement = document.createElement("BUTTON");
+            let BtnTxtNode = document.createTextNode("Add to cart");
+
+            letTextPara.appendChild(ProductName);
+            btnCreateElement.appendChild(BtnTxtNode);
+
+            letTdId.appendChild(ProdId);
+            letTdProd.appendChild(letTextPara);
+            letTdCart.appendChild(btnCreateElement);
+
+            letTr.appendChild(letTdId);
+            letTr.appendChild(letTdProd);
+            letTr.appendChild(letTdCart);
+            letTr.setAttribute("id", letProdId);
+
+            letTable.appendChild(letTr);
+            letTable.setAttribute("border", "1");
+            document.getElementById(letTdId)
+            document.body.appendChild(letTable);
+
+            var bns = document.getElementsByTagName("button");
+            for (i = 0; i < bns.length; i++) {
+                bns[i].addEventListener("click", function () {
+                    addCart(event)
+                });
+            }
+        }
+
+
+
+        function addCart(evt) {
+
+            // let letId = evt.path[2].id;
+            // var removeProd = document.getElementById(letId);
+            // console.log(removeProd)
+            console.log(evt)
+            evt.stopPropagation();
+            // removeProd.parentNode.removeChild(removeProd);
+
+            // let letTable = document.createElement("table");
+            // let letTr = document.createElement("tr");
+            // let letTdId = document.createElement("td");
+            // let letTdProd = document.createElement("td");
+            // let letTdCart = document.createElement("td");
+            // let letTextPara = document.createElement("p");
+            // let ProductName = document.createTextNode("Product");
+
+            // let btnCreateElement = document.createElement("BUTTON");
+            // let BtnTxtNode = document.createTextNode("Delete cart");
+            // let ProdId = document.createTextNode(letId);
+
+            // letTextPara.appendChild(ProductName);
+            // btnCreateElement.appendChild(BtnTxtNode);
+
+            // letTdId.appendChild(ProdId);
+            // letTdProd.appendChild(letTextPara);
+            // letTdCart.appendChild(btnCreateElement);
+
+            // letTr.appendChild(letTdId);
+            // letTr.appendChild(letTdProd);
+            // letTr.appendChild(letTdCart);
+            // letTr.setAttribute("id", letProdId);
+            // temp = false;
+
+            // document.body.appendChild(letTr).addEventListener("click", function () {
+            //     doClick(event)
+            // }, false);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <div>
+            <div id="btnPlus" onclick="doClick()">Add Products</div>
+            <p id="txtDiv"></p>
+        </div>
+        <div id="idAddCart">
+            Products added to Cart
+        </div>
+    </div>
+
+</body>
+
+</html>
