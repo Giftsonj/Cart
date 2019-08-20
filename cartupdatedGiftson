@@ -2,9 +2,17 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
         table {
             border-collapse: collapse;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column;
         }
 
         * {
@@ -14,36 +22,41 @@
         body {
             margin: 0;
             border: 1px solid;
-            padding: 5%;
+            padding: 10%;
+        }
+
+        td,
+        th {
+            padding: 10px;
         }
 
         /* .flex-container {
             display: flex;
             flex-wrap: nowrap;
         } */
-        div>div {
-            float: left;
-            width: 33.33%;
-            padding: 15px;
-        }
+        /* div>div {
+            float: left; */
+        /* width: 33.33%; */
+        /* padding: 15px;
+        } */
 
-        .row:after {
+        /* .row:after {
             content: "";
             display: table;
             clear: both;
-        }
+        } */
 
         .txtDiv {
-            float: left;
-            width: 33.33%;
-            padding: 15px;
+            /* float: left;
+            width: 33.33%; */
+            padding: 70px;
         }
 
-        .idAddCart {
+        /* .idAddCart {
             float: left;
             width: 33.33%;
             padding: 15px;
-        }
+        } */
     </style>
     <script>
         var temp = true;
@@ -57,26 +70,64 @@
             let letTdId = document.createElement("td");
             let letTdProd = document.createElement("td");
             let letTdCart = document.createElement("td");
-
-
-            if (temp == false) {
+            let tempId = letProdId
+            if (evt != undefined) {
                 let letId = evt.path[2].id;
-                console.log(letId)
-
-                var removeProd = document.getElementById(letId);
+                let removeProd = document.getElementById(letId);
                 removeProd.parentNode.removeChild(removeProd);
                 temp = true;
                 console.log("Hii")
-
-                return false;
+                letProdId = letId;
             }
             let ProdId = document.createTextNode(letProdId);
+            let letTextPara = document.createElement("p");
+            let ProductName = document.createTextNode("Product");
+            let btnCreateElement = document.createElement("BUTTON");
+            let BtnTxtNode = document.createTextNode("Add to cart");
+            btnCreateElement.setAttribute("onClick", "addCart(event)");
+            letTextPara.appendChild(ProductName);
+            btnCreateElement.appendChild(BtnTxtNode);
+            letTdId.appendChild(ProdId);
+            letTdProd.appendChild(letTextPara);
+            letTdCart.appendChild(btnCreateElement);
+            letTr.appendChild(letTdId);
+            letTr.appendChild(letTdProd);
+            letTr.appendChild(letTdCart);
+            letTr.setAttribute("id", letProdId);
 
+            letTable.appendChild(letTr);
+            letTable.setAttribute("border", "1");
+            letTable.setAttribute("id", "prodTable")
+
+            document.getElementById('txtDiv').appendChild(letTable);
+            letProdId = tempId;
+        }
+
+        function addCart(evt) {
+            let letId = evt.path[2].id;
+            let removeProd = document.getElementById(letId);
+            // console.log(removeProd)
+            // console.log(evt);
+
+            removeProd.parentNode.removeChild(removeProd);
+
+            let letTable = document.createElement("table");
+            let letTr = document.createElement("tr");
+            // let letTd = document.createElement("td");
+
+            let letTdId = document.createElement("td");
+            let letTdProd = document.createElement("td");
+            let letTdCart = document.createElement("td");
             let letTextPara = document.createElement("p");
             let ProductName = document.createTextNode("Product");
 
             let btnCreateElement = document.createElement("BUTTON");
-            let BtnTxtNode = document.createTextNode("Add to cart");
+            let BtnTxtNode = document.createTextNode("Delete cart");
+            temp = false;
+
+            btnCreateElement.setAttribute("onClick", "deleteCart(event)");
+
+            let ProdId = document.createTextNode(letId);
 
             letTextPara.appendChild(ProductName);
             btnCreateElement.appendChild(BtnTxtNode);
@@ -88,70 +139,26 @@
             letTr.appendChild(letTdId);
             letTr.appendChild(letTdProd);
             letTr.appendChild(letTdCart);
-            letTr.setAttribute("id", letProdId);
+            letTr.setAttribute("id", letId);
 
+            // letTr.appendChild(removeProd);
             letTable.appendChild(letTr);
             letTable.setAttribute("border", "1");
-            document.body.appendChild(letTable).addEventListener("click", function () {
-                addCart(event)
-            }, false);
-            // document.body.appendChild(letTable)
-            // console.log(letProdId)
-            // let bns = document.getElementById(letProdId);
-            // console.log(bns)
-            // btnCreateElement =bns;
-            // if (bns != "" || bns != null || bns != undefined || bns != 0) {
-            // for (let i = 1; i < bns.length; i++) {
-            //     bns[i].addEventListener("click", function () {
-            //         addCart(event)
-            //     });
-            // }
-            // }
-        }
-        function addCart(evt) {
-            let letId = evt.path[2].id;
-            // evt.stopPropagation();
-            var removeProd = document.getElementById(letId);
-            console.log(letId.length)
-            // for (let i = 1; i < bns.length; i++) {
-            //     bns[i].addEventListener("click", function () {
-            //         addCart(event)
-            //     });
-            // }
-            for (let i = 0; i < removeProd.length; i++) {
-                // console.log(removeProd)
-            }
-            // console.log(removeProd.length)
-            removeProd.parentNode.removeChild(letId);
+            // letTable.setAttribute("padding", "100px");
 
-            // let letTable = document.createElement("table");
-            // let letTr = document.createElement("tr");
-            // let letTdId = document.createElement("td");
-            // let letTdProd = document.createElement("td");
-            // let letTdCart = document.createElement("td");
-            // let letTextPara = document.createElement("p");
-            // let ProductName = document.createTextNode("Product");
+            document.getElementById('cart1').appendChild(letTable);
 
-            // let btnCreateElement = document.createElement("BUTTON");
-            // let BtnTxtNode = document.createTextNode("Delete cart");
-            // let ProdId = document.createTextNode(letId);
-
-            // letTextPara.appendChild(ProductName);
-            // btnCreateElement.appendChild(BtnTxtNode);
-
-            // letTdId.appendChild(ProdId);
-            // letTdProd.appendChild(letTextPara);
-            // letTdCart.appendChild(btnCreateElement);
-
-            // letTr.appendChild(letTdId);
-            // letTr.appendChild(letTdProd);
-            // letTr.appendChild(letTdCart);
-            // letTr.setAttribute("id", letProdId);
-            // temp = false;
 
             // document.body.appendChild(letTr).addEventListener("click", function () {
             //     doClick(event)
             // }, false);
+        }
+        function deleteCart(evt) {
+            let letId = evt.path[2].id;
+            let removeProd = document.getElementById(letId);
+            // console.log(removeProd)
+            // console.log(evt);
+            doClick(event)
         }
     </script>
 </head>
@@ -159,11 +166,24 @@
 <body>
     <div class="row">
         <div>
-            <button id="btnPlus" onclick="doClick()">Add Products</button>
+            <div>
+                <b>Products</b>
+
+            </div>
+            <p id="btnPlus" onclick="doClick()">
+                <a href="#">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </p>
             <p id="txtDiv"></p>
+
         </div>
-        <div id="idAddCart">
-            Products added to Cart
+
+
+        <div>
+            <p>
+                <b>Products added to Cart</b></p>
+            <p id="cart1"></p>
         </div>
     </div>
 
