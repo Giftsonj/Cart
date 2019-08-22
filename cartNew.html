@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <style>
+        body {
+            margin-left: 500px;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid;
+            padding: 18px;
+        }
+
+        #myTable {
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        #deleteCart {
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        let letProdId = 0;
+        function addProd(evt) {
+            let table, row, cell1, cell2, cell3, tempId = 0, letProdLen = 0, letCartLen = 0, total = 0;
+            table = document.getElementById("myTable");
+            row = table.insertRow();
+            cell1 = row.insertCell();
+            cell2 = row.insertCell();
+            cell3 = row.insertCell();
+            if (evt != undefined) {
+                let evtId = evt.target.id;
+                letProdId = evtId;
+                let removeProd = document.getElementById(letProdId);
+                removeProd.parentNode.removeChild(removeProd);
+            }
+            letProdLen = document.getElementById('myTable').rows.length - 1;
+            letCartLen = document.getElementById('deleteCart').rows.length - 1;
+            total = letProdLen + letCartLen;
+            if (letProdId != 0) {
+                total = letProdId;
+                letProdId = 0;
+            }
+            cell1.innerHTML = total;
+            cell2.innerHTML = "Product" + total;
+            cell3.innerHTML = '<button id = ' + total + ' onclick="addCart(event)">Add to cart</button>';
+            row.setAttribute("id", total);
+        }
+        function addCart(evt) {
+            let letProdId, removeProd, table, row, cell1, cell2, cell3;
+            letProdId = evt.target.id;
+            removeProd = document.getElementById(letProdId);
+            removeProd.parentNode.removeChild(removeProd);
+            table = document.getElementById("deleteCart");
+            row = table.insertRow();
+            cell1 = row.insertCell();
+            cell2 = row.insertCell();
+            cell3 = row.insertCell();
+            row.setAttribute("id", letProdId);
+            cell1.innerHTML = letProdId;
+            cell2.innerHTML = "Product" + letProdId;
+            cell3.innerHTML = '<button id = ' + letProdId + ' onclick="addProd(event)">Delete cart</button>';
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="addProd()">Add Products</button>
+    <table id="myTable">
+        <tr>
+            <th>Sno</th>
+            <th>Products</th>
+            <th>Action</th>
+        </tr>
+    </table>
+    <p>
+        Products added to cart
+    </p>
+    <table id="deleteCart">
+        <tr>
+            <th>Sno</th>
+            <th>Products</th>
+            <th>Action</th>
+        </tr>
+    </table>
+</body>
+
+</html>
