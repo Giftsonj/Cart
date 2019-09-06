@@ -1,9 +1,11 @@
 body {
-  margin-left: 500px;
+  margin-left: 200px;
   margin-top: 2px;
+  margin-right: 300px;
+
 }
 
-table,
+/* table,
 td,
 th {
   border: 1px solid;
@@ -18,4 +20,13 @@ th {
 #deleteCart {
   border-collapse: collapse;
   margin-top: 10px;
+ }  */
+/* .liClass{
+  border: 1px solid;
+  padding: 2px;
+
+} */
+tr {
+  border: 1px solid;
+  padding: 5px;
 }
