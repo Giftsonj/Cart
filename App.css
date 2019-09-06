@@ -1,0 +1,21 @@
+body {
+  margin-left: 500px;
+  margin-top: 2px;
+}
+
+table,
+td,
+th {
+  border: 1px solid;
+  padding: 18px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#deleteCart {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
